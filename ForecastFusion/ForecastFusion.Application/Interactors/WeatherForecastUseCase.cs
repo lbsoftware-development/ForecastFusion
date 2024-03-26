@@ -1,12 +1,7 @@
-﻿using ForecastFusionDomain.Contracts;
-using ForecastFusionDomain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ForecastFusion.Application.Contracts;
+using ForecastFusion.Domain.Entities;
 
-namespace ForecastFusionDomain.Interactors
+namespace ForecastFusion.Application.Interactors
 {
     public class WeatherForecastUseCase
     {

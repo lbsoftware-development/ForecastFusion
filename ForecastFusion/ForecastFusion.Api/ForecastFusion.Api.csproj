@@ -11,4 +11,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ForecastFusion.Application\ForecastFusion.Application.csproj" />
+    <ProjectReference Include="..\ForecastFusion.Domain\ForecastFusion.Domain.csproj" />
+    <ProjectReference Include="..\ForecastFusion.Infrastructure\ForecastFusion.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

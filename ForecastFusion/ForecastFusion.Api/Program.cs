@@ -1,10 +1,7 @@
-using ForecastFusion.Api;
 using ForecastFusion.Application.Contracts;
 using ForecastFusion.Application.Interactors;
-using ForecastFusion.Domain.Entities;
+using ForecastFusion.Application.Services;
 using ForecastFusion.Infrastructure.Repositories;
-using System.Collections.Generic;
-using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<WeatherForecastUseCase>();
 builder.Services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
+builder.Services.AddScoped<IAzureKeyVaultService, AzureKeyVaultService>();
 
 var app = builder.Build();
 
@@ -34,10 +32,11 @@ using (var serviceScope = app.Services.CreateScope())
     var services = serviceScope.ServiceProvider;
 
     var weatherForecastUseCase = services.GetRequiredService<WeatherForecastUseCase>();
+    var azureKeyVaultService = services.GetRequiredService<IAzureKeyVaultService>();
 
-    app.MapGet("/weatherforecast", () =>
+    app.MapGet("/weatherforecast", async () =>
     {
-
+        var tableconnectionstring = await azureKeyVaultService.GetSecretFromVault("forecastfusiondevtablestorageconnstring");
         var forecasts = weatherForecastUseCase.GetForecastsAsync().Result;
         return forecasts;
     })

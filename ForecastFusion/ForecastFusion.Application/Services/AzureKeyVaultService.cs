@@ -13,6 +13,11 @@ namespace ForecastFusion.Application.Services
             secretClient = new SecretClient(new Uri($"https://{KEY_VAULT_NAME}.vault.azure.net/"), new DefaultAzureCredential());
         }
 
+        public AzureKeyVaultService(SecretClient secretClient)
+        {
+            this.secretClient = secretClient;
+        }
+
         public async Task<string> GetSecretFromVault(string secretName)
         {
             if (string.IsNullOrEmpty(secretName))

@@ -1,5 +1,6 @@
 ﻿using ForecastFusion.Application.Contracts;
 using ForecastFusion.Domain.Entities;
+using ForecastFusion.Infrastructure.Entities;
 
 namespace ForecastFusion.Infrastructure.Repositories
 {

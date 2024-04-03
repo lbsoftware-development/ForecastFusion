@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ForecastFusion.Infrastructure.Entities
 {
-    internal class UserProfile
-    {
-        public Guid Id { get; set; }
-
+    public class UserProfile: AzureTableEntity
+    {     
         public required string Name { get; set; }
+
+        public required string Country { get; set; }
 
         public required string Location { get; set; }
 

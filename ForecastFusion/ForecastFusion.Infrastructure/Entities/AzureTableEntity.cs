@@ -3,7 +3,7 @@ using Azure.Data.Tables;
 
 namespace ForecastFusion.Infrastructure.Entities
 {
-    internal abstract class AzureTableEntity : ITableEntity
+    public abstract class AzureTableEntity : ITableEntity
     {
         public string? PartitionKey { get; set ; }
         public string? RowKey { get; set ; }

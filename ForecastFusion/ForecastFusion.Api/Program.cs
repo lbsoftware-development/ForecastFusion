@@ -1,8 +1,10 @@
 using ForecastFusion.Application.Contracts;
 using ForecastFusion.Application.Interactors;
 using ForecastFusion.Application.Services;
+using ForecastFusion.Domain.Entities;
 using ForecastFusion.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using ForecastFusion.Infrastructure.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,10 +42,12 @@ using (var serviceScope = app.Services.CreateScope())
 
     var weatherForecastUseCase = services.GetRequiredService<WeatherForecastUseCase>();
     var azureKeyVaultService = services.GetRequiredService<IAzureKeyVaultService>();
+    var azureTableStorageService = services.GetRequiredService<IAzureTableStorageService>();
 
     app.MapGet("/weatherforecast", async () =>
     {
         var tableconnectionstring = await azureKeyVaultService.GetSecretFromVault("forecastfusiondevtablestorageconnstring");
+        var userProfileEntity = await azureTableStorageService.RetrieveEntityAsync<ForecastFusion.Infrastructure.Entities.UserProfile>("UserProfile", "West Midlands", "6eeb7793-f220-497b-98b7-b5b60fce9707");
         var forecasts = weatherForecastUseCase.GetForecastsAsync().Result;
         return forecasts;
     })

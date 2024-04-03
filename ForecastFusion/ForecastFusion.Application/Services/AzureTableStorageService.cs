@@ -21,18 +21,22 @@ namespace ForecastFusion.Application.Services
             await _tableServiceClient.GetTableClient(tableName).UpdateEntityAsync(entity, Azure.ETag.All);
         }
 
-        public async Task<ITableEntity> RetrieveEntityAsync<T>(string tableName, string partitionKey, string rowKey) where T : class, ITableEntity
+        public async Task<Result<ITableEntity>> RetrieveEntityAsync<T>(string tableName, string partitionKey, string rowKey) where T : class, ITableEntity
         {
-            Response<T> response = await _tableServiceClient.GetTableClient(tableName).GetEntityAsync<T>(partitionKey, rowKey, cancellationToken: CancellationToken.None);
-
-            if (response.GetRawResponse().Status == (int)HttpStatusCode.OK)
+            try
             {
-                return response.Value;
+                Response<T> response = await _tableServiceClient.GetTableClient(tableName).GetEntityAsync<T>(partitionKey, rowKey, cancellationToken: CancellationToken.None);
+                
+                return Result<ITableEntity>.Success(response.Value);
+                              
             }
-            else
+            catch(RequestFailedException ex)
             {
-                return default;
+                var returnResult = Result<ITableEntity>.Failure(ex);
+                returnResult.HttpStatusCode = (HttpStatusCode)ex.Status;
+                return returnResult;
             }
+            
         }
     }
 }

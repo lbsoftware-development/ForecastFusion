@@ -10,3 +10,4 @@ Day 4 - Added new tests project for Application layer and added tests for new Az
 **Week 2 - 02/04/2024 (Bank Holiday)**
 
 Day 4 - Created new AzureTableStorageService to handle everything Azure Table Storage related (Yet to test)
+Day 5 - Create new Table in Azure Table Storage with data to test new AzureTableStorageService and also implemented Result pattern to handle exceptions better

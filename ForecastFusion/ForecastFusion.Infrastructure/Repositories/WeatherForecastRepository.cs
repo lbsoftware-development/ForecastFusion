@@ -1,6 +1,6 @@
 ﻿using ForecastFusion.Application.Contracts;
-using ForecastFusion.Domain.Entities;
 using ForecastFusion.Infrastructure.Entities;
+using WeatherForecast = ForecastFusion.Domain.Entities.WeatherForecast;
 
 namespace ForecastFusion.Infrastructure.Repositories
 {

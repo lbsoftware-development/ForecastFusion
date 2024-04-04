@@ -5,6 +5,8 @@ using ForecastFusion.Domain.Entities;
 using ForecastFusion.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using ForecastFusion.Infrastructure.Entities;
+using System.Net;
+using System.Reflection.Metadata.Ecma335;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,7 @@ builder.Services.AddScoped<IAzureKeyVaultService, AzureKeyVaultService>();
 builder.Services.AddScoped<IAzureTableStorageService>(provider =>
 {
     var keyVaultService = provider.GetService<IAzureKeyVaultService>();
-    string tableStorageConnectionString = keyVaultService.GetSecretFromVault("forecastfusiondevtablestorageconnstring").Result;
+    string tableStorageConnectionString = keyVaultService!.GetSecretFromVault("forecastfusiondevtablestorageconnstring").Result;
     return new AzureTableStorageService(tableStorageConnectionString);
 });
 
@@ -41,18 +43,37 @@ using (var serviceScope = app.Services.CreateScope())
     var services = serviceScope.ServiceProvider;
 
     var weatherForecastUseCase = services.GetRequiredService<WeatherForecastUseCase>();
-    var azureKeyVaultService = services.GetRequiredService<IAzureKeyVaultService>();
     var azureTableStorageService = services.GetRequiredService<IAzureTableStorageService>();
 
     app.MapGet("/weatherforecast", async () =>
-    {
-        var tableconnectionstring = await azureKeyVaultService.GetSecretFromVault("forecastfusiondevtablestorageconnstring");
-        var userProfileEntity = await azureTableStorageService.RetrieveEntityAsync<ForecastFusion.Infrastructure.Entities.UserProfile>("UserProfile", "West Midlands", "6eeb7793-f220-497b-98b7-b5b60fce9707");
-        var forecasts = weatherForecastUseCase.GetForecastsAsync().Result;
+    {        
+        var forecasts = await weatherForecastUseCase.GetForecastsAsync();
         return forecasts;
     })
     .WithName("GetWeatherForecast")
     .WithOpenApi();
+
+    app.MapGet("/UserProfile/{Country}/{userId}", async (string Country, string userId) =>
+    {
+        if (String.IsNullOrEmpty(Country))
+        {
+            return Results.BadRequest("Country cannout be empty");
+        }
+
+        if (String.IsNullOrEmpty(userId))
+        {
+            return Results.BadRequest("User ID cannot be empty");
+        }
+
+        var userProfileEntity = await azureTableStorageService.RetrieveEntityAsync<ForecastFusion.Infrastructure.Entities.UserProfile>("UserProfile", Country, userId);
+
+        if (!userProfileEntity.IsSuccess)
+        {
+            return Results.StatusCode((int)userProfileEntity.HttpStatusCode!);
+        }
+
+        return Results.Ok(userProfileEntity.Value);
+    });
 }
 
 

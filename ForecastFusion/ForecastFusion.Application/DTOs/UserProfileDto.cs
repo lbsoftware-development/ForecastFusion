@@ -1,6 +1,6 @@
-﻿namespace ForecastFusion.Domain.Entities
+﻿namespace ForecastFusion.Application.DTOs
 {
-    public class UserProfile
+    public record UserProfileDto()
     {
         public Guid Id { get; set; }
 

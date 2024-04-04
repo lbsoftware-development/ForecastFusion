@@ -24,4 +24,20 @@ namespace ForecastFusion.Application
         public static Result<T> Success(T value) => new Result<T>(value, null);
         public static Result<T> Failure(Exception error) => new Result<T>(default(T), error);
     }
+
+    public class Result
+    {
+        public Exception Error { get; }
+        public bool IsSuccess => Error == null;
+
+        public HttpStatusCode? HttpStatusCode { get; set; }
+
+        private Result(Exception error)
+        {
+            Error = error;
+        }
+
+        public static Result Success() => new Result(null);
+        public static Result Failure(Exception error) => new Result(error);
+    }
 }

@@ -13,3 +13,5 @@ Day 4 - Created new AzureTableStorageService to handle everything Azure Table St
 Day 5 - Create new Table in Azure Table Storage with data to test new AzureTableStorageService and also implemented Result pattern to handle exceptions better\
 Day 6 - Added User Profile Get endpoint, Dtos and mappers
 
+**Week 3 - 08/04/2024**
+Day 7 - Reorganised project structure and fleshed out upsert method for UserProfile

@@ -1,4 +1,5 @@
-﻿using ForecastFusion.Application.DTOs;
+﻿using Azure.Data.Tables;
+using ForecastFusion.Application.DTOs;
 
 namespace ForecastFusion.Application.Contracts
 {

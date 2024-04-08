@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ForecastFusion.Infrastructure.Entities;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
+using ForecastFusion.Application.DTOs;
+using ForecastFusion.Application.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,13 +68,20 @@ using (var serviceScope = app.Services.CreateScope())
         }
 
         var userProfileEntity = await azureTableStorageService.RetrieveEntityAsync<ForecastFusion.Infrastructure.Entities.UserProfile>("UserProfile", Country, userId);
-
+        
         if (!userProfileEntity.IsSuccess)
         {
             return Results.StatusCode((int)userProfileEntity.HttpStatusCode!);
         }
-
+        
         return Results.Ok(userProfileEntity.Value);
+    })
+        .WithName("GetUserProfile")
+        .WithOpenApi();
+
+    app.MapPut("/UserProfile", async (UserProfileDto userProfile) =>
+    {
+        var result = await azureTableStorageService.UpsertEntityAsync(UserProfileDto, )
     });
 }
 

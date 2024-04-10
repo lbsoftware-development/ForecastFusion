@@ -21,7 +21,7 @@ namespace ForecastFusion.Application.Services
             try
             {
                 var updateResult = await _tableServiceClient.GetTableClient(tableName).UpsertEntityAsync(entity, TableUpdateMode.Replace);
-                return Result.Success();
+                return Result.Success((HttpStatusCode)updateResult.Status);
             }
             catch (RequestFailedException ex)
             {

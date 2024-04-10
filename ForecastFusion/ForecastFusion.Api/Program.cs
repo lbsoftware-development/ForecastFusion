@@ -1,3 +1,4 @@
+using ForecastFusion.Api;
 using ForecastFusion.Application.Contracts;
 using ForecastFusion.Application.Interactors;
 using ForecastFusion.Application.Services;
@@ -35,6 +36,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+app.UseIdempotencyMiddleware();
 
 using (var serviceScope = app.Services.CreateScope())
 {
@@ -78,6 +80,7 @@ using (var serviceScope = app.Services.CreateScope())
     app.MapPut("/UserProfile", async (DomainEntities.UserProfile userProfile) =>
     {
         var result = await userProfileRepoUserCase.UpsertUserProfileAsync(userProfile);
+        return Results.StatusCode((int)result.HttpStatusCode!);
     });
 }
 

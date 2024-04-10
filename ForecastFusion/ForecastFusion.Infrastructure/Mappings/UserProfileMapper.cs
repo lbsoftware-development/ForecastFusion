@@ -11,7 +11,7 @@ namespace ForecastFusion.Infrastructure.Mappings
             {
                 EmailAddress = profile.EmailAddress,
                 Location = profile.Location,
-                RowKey = profile.Id.ToString(),
+                RowKey = profile.Id == Guid.Empty ? Guid.NewGuid().ToString() : profile.Id.ToString(),
                 PartitionKey = profile.Country,
                 Name = profile.Name
             };

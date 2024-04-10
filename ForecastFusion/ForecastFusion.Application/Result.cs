@@ -43,8 +43,14 @@ namespace ForecastFusion.Application
             Error = error;
         }
               
+        private Result(HttpStatusCode httpStatusCode)
+        {
+            HttpStatusCode = httpStatusCode;
+        }
 
         public static Result Success() => new Result(null);
+
+        public static Result Success(HttpStatusCode httpStatusCode) => new Result(httpStatusCode);
         public static Result Failure(Exception error) => new Result(error);        
     }
 }

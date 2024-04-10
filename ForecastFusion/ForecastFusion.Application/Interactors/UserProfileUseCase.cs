@@ -1,5 +1,5 @@
 ﻿using ForecastFusion.Application.Contracts;
-using ForecastFusion.Application.DTOs;
+using ForecastFusion.Domain.Entities;
 
 namespace ForecastFusion.Application.Interactors
 {
@@ -7,14 +7,14 @@ namespace ForecastFusion.Application.Interactors
     {
         private readonly IUserProfileRespository _userProfileRespository = userProfileRespository;
 
-        public async Task<Result<UserProfileDto>> GetUserProfile(string country, string userId)
+        public async Task<Result<UserProfile>> GetUserProfileAsync(string country, string userId)
         {
-            return await _userProfileRespository.GetUserProfile(country, userId);
+            return await _userProfileRespository.GetUserProfileAsync(country, userId);
         }
 
-        public async Task<Result> UpsertUserProfile(UserProfileDto userProfile)
+        public async Task<Result> UpsertUserProfileAsync(UserProfile userProfile)
         {
-            return await _userProfileRespository.UpsertUserProfile(userProfile);
+            return await _userProfileRespository.UpsertUserProfileAsync(userProfile);
         }
     }
 }

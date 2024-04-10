@@ -1,12 +1,11 @@
-﻿using Azure.Data.Tables;
-using ForecastFusion.Application.DTOs;
+﻿using ForecastFusion.Domain.Entities;
 
 namespace ForecastFusion.Application.Contracts
 {
     public interface IUserProfileRespository
     {
-        Task<Result<UserProfileDto>> GetUserProfile(string country, string userId);
+        Task<Result<UserProfile>> GetUserProfileAsync(string country, string userId);
 
-        Task<Result> UpsertUserProfile(UserProfileDto userProfile);
+        Task<Result> UpsertUserProfileAsync(UserProfile userProfile);
     }
 }

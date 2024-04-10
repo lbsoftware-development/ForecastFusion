@@ -1,23 +1,10 @@
-﻿using ForecastFusion.Application.DTOs;
-using ForecastFusion.Infrastructure.Entities;
+﻿using ForecastFusion.Infrastructure.Entities;
 using DomainEntities = ForecastFusion.Domain.Entities;
 
 namespace ForecastFusion.Infrastructure.Mappings
 {
     public static class UserProfileMapper
     {
-        public static UserProfileDto InfraToDto(UserProfile userProfile)
-        {
-            return new UserProfileDto()
-            { 
-                Country = userProfile.PartitionKey!,
-                EmailAddress = userProfile.EmailAddress,
-                Location = userProfile.Location,
-                Name = userProfile.Name,
-                Id = Guid.Parse(userProfile.RowKey!)
-            };
-
-        }
         public static UserProfile MapToInfra(DomainEntities.UserProfile profile)
         {
             return new UserProfile()

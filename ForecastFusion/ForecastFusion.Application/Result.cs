@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Azure.Identity;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ForecastFusion.Application
 {
@@ -21,8 +17,18 @@ namespace ForecastFusion.Application
             Error = error;
         }
 
+        public Result(T value, Exception error, HttpStatusCode httpStatusCode)
+        {
+            Value = value;
+            Error = error;
+            HttpStatusCode = httpStatusCode;
+        }
+
         public static Result<T> Success(T value) => new Result<T>(value, null);
         public static Result<T> Failure(Exception error) => new Result<T>(default(T), error);
+
+        public static Result<T> Failure(T value, Exception error, HttpStatusCode httpStatusCode) => new Result<T>(value, error, httpStatusCode);
+
     }
 
     public class Result
@@ -36,8 +42,9 @@ namespace ForecastFusion.Application
         {
             Error = error;
         }
+              
 
         public static Result Success() => new Result(null);
-        public static Result Failure(Exception error) => new Result(error);
+        public static Result Failure(Exception error) => new Result(error);        
     }
 }

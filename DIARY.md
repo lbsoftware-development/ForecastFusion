@@ -14,4 +14,6 @@ Day 5 - Create new Table in Azure Table Storage with data to test new AzureTable
 Day 6 - Added User Profile Get endpoint, Dtos and mappers
 
 **Week 3 - 08/04/2024**
-Day 7 - Reorganised project structure and fleshed out upsert method for UserProfile
+
+Day 7 - Reorganised project structure and fleshed out upsert method for UserProfile\
+Day 8 - Added Idempotency Middleware for PUT calls 

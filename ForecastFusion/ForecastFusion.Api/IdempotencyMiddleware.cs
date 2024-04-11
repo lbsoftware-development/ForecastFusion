@@ -4,7 +4,7 @@
     {
         private readonly RequestDelegate _next;
         private static readonly Dictionary<string, DateTime> _processedRequests = new Dictionary<string, DateTime>();
-        private static readonly TimeSpan _retentionPeriod = TimeSpan.FromMinutes(5); // Example: Retention period of 5 minutes
+        private static readonly TimeSpan _retentionPeriod = TimeSpan.FromSeconds(10); 
 
         public IdempotencyMiddleware(RequestDelegate next)
         {

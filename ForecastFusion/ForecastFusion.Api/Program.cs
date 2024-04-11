@@ -57,7 +57,7 @@ using (var serviceScope = app.Services.CreateScope())
     {
         if (String.IsNullOrEmpty(Country))
         {
-            return Results.BadRequest("Country cannout be empty");
+            return Results.BadRequest("Country cannot be empty");
         }
 
         if (String.IsNullOrEmpty(userId))

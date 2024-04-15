@@ -3,6 +3,7 @@ using ForecastFusion.Application.Contracts;
 using ForecastFusion.Application.Interactors;
 using ForecastFusion.Application.Services;
 using ForecastFusion.Infrastructure.Repositories;
+using Serilog;
 using DomainEntities = ForecastFusion.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +38,12 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseIdempotencyMiddleware();
+Log.Logger = new LoggerConfiguration()
+                                    .MinimumLevel.Debug()
+                                    .WriteTo.Console()
+                                    .CreateLogger();
+
+
 
 using (var serviceScope = app.Services.CreateScope())
 {

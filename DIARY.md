@@ -20,4 +20,5 @@ Day 8 - Added Idempotency Middleware for PUT calls
 Day 9 - Added Tests and tested Idempotency Middleware
 
 **Week 4 - 15/04/2024**
+
 Day 10 - Fixed UserProfileRepositoryTests and added serilog

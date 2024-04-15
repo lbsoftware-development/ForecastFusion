@@ -1,17 +1,13 @@
-using NUnit.Framework;
-using Moq;
-using System.Threading.Tasks;
-using ForecastFusion.Infrastructure.Repositories;
-using ForecastFusion.Application.Contracts;
-using ForecastFusion.Infrastructure.Entities;
-using ForecastFusion.Infrastructure.Mappings;
-using ForecastFusion.Infrastructure.Const;
-using DomainEntities = ForecastFusion.Domain.Entities;
-using System.Net;
+using Azure;
 using Azure.Data.Tables;
 using ForecastFusion.Application;
-using Azure;
-using System.Diagnostics.Metrics;
+using ForecastFusion.Application.Contracts;
+using ForecastFusion.Infrastructure.Const;
+using ForecastFusion.Infrastructure.Entities;
+using ForecastFusion.Infrastructure.Repositories;
+using Moq;
+using System.Net;
+using DomainEntities = ForecastFusion.Domain.Entities;
 
 
 namespace ForecastFusion.Infrastructure.Tests.Repositories
@@ -33,9 +29,9 @@ namespace ForecastFusion.Infrastructure.Tests.Repositories
         {
             // Arrange
             var country = "TestCountry";
-            var userId = "TestUserId";
-            var userProfileEntity = new UserProfile() { Name = "TestName", Location = "TestLocation" };
-            var userProfile = new DomainEntities.UserProfile() { Country = country, Location = "TestLocation", Name = "TestName" };
+            var userId = Guid.NewGuid().ToString();
+            var userProfileEntity = new UserProfile() { PartitionKey = country, RowKey = userId, Name = "TestName", Location = "TestLocation" };
+            var userProfile = new DomainEntities.UserProfile() { Country = country, Location = "TestLocation", Name = "TestName", Id = Guid.Parse(userId) };
             
             _azureTableStorageServiceMock.Setup(x => x.RetrieveEntityAsync<ITableEntity>(AzureStorageTableNames.USER_PROFILE, country, userId))
             .ReturnsAsync(Result<ITableEntity>.Success(userProfileEntity));
@@ -45,7 +41,11 @@ namespace ForecastFusion.Infrastructure.Tests.Repositories
 
             // Assert
             Assert.IsTrue(result.IsSuccess);
-            Assert.AreEqual(userProfile, result.Value);
+            Assert.That(result.Value.Country, Is.EqualTo(userProfile.Country));
+            Assert.That(result.Value.Name, Is.EqualTo(userProfile.Name));
+            Assert.That(result.Value.EmailAddress, Is.EqualTo(userProfile.EmailAddress));
+            Assert.That(result.Value.Id, Is.EqualTo(userProfile.Id));
+            Assert.That(result.Value.Location, Is.EqualTo(userProfile.Location));            
         }
 
         [Test]
@@ -55,24 +55,27 @@ namespace ForecastFusion.Infrastructure.Tests.Repositories
             var country = "TestCountry";
             var userId = "TestUserId";
             var error = "Error message";
-            
+            var mockResult = Result<ITableEntity>.Failure(new RequestFailedException(error));
+            mockResult.HttpStatusCode = HttpStatusCode.NotFound;
+
+
             _azureTableStorageServiceMock.Setup(x => x.RetrieveEntityAsync<ITableEntity>(AzureStorageTableNames.USER_PROFILE, country, userId))
-                .ReturnsAsync(Result<ITableEntity>.Failure(new RequestFailedException("Error")));
+                .ReturnsAsync(mockResult);
 
             // Act
             var result = await _userProfileRepository.GetUserProfileAsync(country, userId);
 
             // Assert
             Assert.IsFalse(result.IsSuccess);
-            Assert.AreEqual(HttpStatusCode.NotFound, result.HttpStatusCode);
-            Assert.AreEqual(error, result.Error);
+            Assert.That(result.HttpStatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+            Assert.That(result.Error.Message, Is.EqualTo(error));
         }
 
         [Test]
         public async Task UpsertUserProfileAsync_Success_ReturnsSuccessResult()
         {
             // Arrange
-            var userProfileEntity = new UserProfile() { Name = "TestName", Location = "TestLocation" };
+            var userProfile = new DomainEntities.UserProfile { Name = "TestName", Location = "TestLocation", Country = "England" };
             
             _azureTableStorageServiceMock.Setup(x => x.UpsertEntityAsync(It.IsAny<ITableEntity>(), AzureStorageTableNames.USER_PROFILE))
                 .ReturnsAsync(Result.Success(HttpStatusCode.OK));
@@ -88,19 +91,21 @@ namespace ForecastFusion.Infrastructure.Tests.Repositories
         public async Task UpsertUserProfileAsync_Failure_ReturnsFailureResult()
         {
             // Arrange
-            var userProfile = new DomainEntities.UserProfile();
+            var userProfile = new DomainEntities.UserProfile { Name = "TestName", Location = "TestLocation", Country = "England" };
             var error = "Error message";
+            var mockResult = Result.Failure(new RequestFailedException(error));
+            mockResult.HttpStatusCode = HttpStatusCode.InternalServerError;
 
             _azureTableStorageServiceMock.Setup(x => x.UpsertEntityAsync(It.IsAny<UserProfile>(), AzureStorageTableNames.USER_PROFILE))
-                .ReturnsAsync(Result.Failure(new RequestFailedException(error, 500, null)));
+                .ReturnsAsync(mockResult);
 
             // Act
             var result = await _userProfileRepository.UpsertUserProfileAsync(userProfile);
 
             // Assert
             Assert.IsFalse(result.IsSuccess);
-            Assert.AreEqual(HttpStatusCode.InternalServerError, result.HttpStatusCode);
-            Assert.AreEqual(error, result.Error);
+            Assert.That(result.HttpStatusCode, Is.EqualTo(HttpStatusCode.InternalServerError));
+            Assert.That(result.Error.Message, Is.EqualTo(error));
         }
     }
 }

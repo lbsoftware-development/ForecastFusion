@@ -3,7 +3,10 @@ using ForecastFusion.Application.Contracts;
 using ForecastFusion.Application.Interactors;
 using ForecastFusion.Application.Services;
 using ForecastFusion.Infrastructure.Repositories;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Extensions.Caching.Memory;
 using Serilog;
+using Serilog.Events;
 using DomainEntities = ForecastFusion.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +27,8 @@ builder.Services.AddScoped<IAzureTableStorageService>(provider =>
     return new AzureTableStorageService(tableStorageConnectionString);
 });
 
+builder.Services.AddMemoryCache();
+
 var app = builder.Build();
 
 
@@ -38,9 +43,11 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseIdempotencyMiddleware();
+
 Log.Logger = new LoggerConfiguration()
                                     .MinimumLevel.Debug()
                                     .WriteTo.Console()
+                                    .WriteTo.File("logs/forecast-fusion-logs-.txt", LogEventLevel.Verbose, retainedFileCountLimit: 7, rollingInterval: RollingInterval.Day)
                                     .CreateLogger();
 
 
@@ -51,7 +58,7 @@ using (var serviceScope = app.Services.CreateScope())
 
     var weatherForecastUseCase = services.GetRequiredService<WeatherForecastUseCase>();
     var userProfileRepoUserCase = services.GetRequiredService<UserProfileUseCase>();
-
+    var logger = app.Logger;
     app.MapGet("/weatherforecast", async () =>
     {        
         var forecasts = await weatherForecastUseCase.GetForecastsAsync();
@@ -61,24 +68,31 @@ using (var serviceScope = app.Services.CreateScope())
     .WithOpenApi();
 
     app.MapGet("/UserProfile/{Country}/{userId}", async (string Country, string userId) =>
-    {
+    {       
         if (String.IsNullOrEmpty(Country))
         {
+            logger.LogDebug("GET UserProfile no Country Provided");
             return Results.BadRequest("Country cannot be empty");
         }
 
         if (String.IsNullOrEmpty(userId))
         {
+            logger.LogDebug("GET UserProfile no UserId Provided");
             return Results.BadRequest("User ID cannot be empty");
         }
+
+        logger.LogInformation("GET UserProfile for Country: {country} and UserId: {userId}", Country, userId);
 
         var userProfileEntity = await userProfileRepoUserCase.GetUserProfileAsync(Country, userId);
         
         if (!userProfileEntity.IsSuccess)
         {
+            logger.LogError("GET UserProfile not successful, responsecode: {responseCode}, Exception: {@exception}",
+                userProfileEntity.HttpStatusCode, userProfileEntity.Error);
             return Results.StatusCode((int)userProfileEntity.HttpStatusCode!);
         }
-        
+
+        logger.LogInformation("GET UserProfile successful for country: {country} & userId: {userId}", Country, userId);
         return Results.Ok(userProfileEntity.Value);
     })
         .WithName("GetUserProfile")
@@ -86,7 +100,13 @@ using (var serviceScope = app.Services.CreateScope())
 
     app.MapPut("/UserProfile", async (DomainEntities.UserProfile userProfile) =>
     {
+        if (userProfile == null)
+        {
+            logger.LogError("PUT UserProfile no/invalid user profile");
+            return Results.BadRequest("No/invalid user profile provided");
+        }
         var result = await userProfileRepoUserCase.UpsertUserProfileAsync(userProfile);
+        logger.LogInformation("PUT UserProfile result: {statusCode}", result.HttpStatusCode.ToString());
         return Results.StatusCode((int)result.HttpStatusCode!);
     });
 }

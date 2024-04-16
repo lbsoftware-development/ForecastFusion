@@ -22,3 +22,4 @@ Day 9 - Added Tests and tested Idempotency Middleware
 **Week 4 - 15/04/2024**
 
 Day 10 - Fixed UserProfileRepositoryTests and added serilog
+Day 11 - Added logging lines and looked into in memory caching and added it to builder services

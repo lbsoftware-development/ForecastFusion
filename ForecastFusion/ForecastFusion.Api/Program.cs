@@ -1,4 +1,6 @@
 using ForecastFusion.Api;
+using ForecastFusion.Api.Caching;
+using ForecastFusion.Application.Caching;
 using ForecastFusion.Application.Contracts;
 using ForecastFusion.Application.Interactors;
 using ForecastFusion.Application.Services;
@@ -20,6 +22,8 @@ builder.Services.AddScoped<UserProfileUseCase>();
 builder.Services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
 builder.Services.AddScoped<IUserProfileRespository, UserProfileRepository>();
 builder.Services.AddScoped<IAzureKeyVaultService, AzureKeyVaultService>();
+builder.Services.AddSingleton<ICacheService, InMemoryCacheService>();
+
 builder.Services.AddScoped<IAzureTableStorageService>(provider =>
 {
     var keyVaultService = provider.GetService<IAzureKeyVaultService>();

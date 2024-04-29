@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using ForecastFusion.Api;
 using ForecastFusion.Api.Caching;
 using ForecastFusion.Application.Caching;
@@ -6,6 +7,7 @@ using ForecastFusion.Application.Interactors;
 using ForecastFusion.Application.Services;
 using ForecastFusion.Infrastructure.Repositories;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Caching.Memory;
 using Serilog;
 using Serilog.Events;
@@ -32,9 +34,19 @@ builder.Services.AddScoped<IAzureTableStorageService>(provider =>
 });
 
 builder.Services.AddMemoryCache();
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new Asp.Versioning.ApiVersion(1);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+});
 
 var app = builder.Build();
-
+var versionSet = app.NewApiVersionSet()
+    .HasApiVersion(new Asp.Versioning.ApiVersion(1))
+    .HasApiVersion(new Asp.Versioning.ApiVersion(2))
+    .ReportApiVersions()
+    .Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -71,7 +83,7 @@ using (var serviceScope = app.Services.CreateScope())
     .WithName("GetWeatherForecast")
     .WithOpenApi();
 
-    app.MapGet("/UserProfile/{Country}/{userId}", async (string Country, string userId) =>
+    app.MapGet("api/v{version:apiVersion}/UserProfile/{Country}/{userId}", async (string Country, string userId) =>
     {       
         if (String.IsNullOrEmpty(Country))
         {
@@ -99,8 +111,30 @@ using (var serviceScope = app.Services.CreateScope())
         logger.LogInformation("GET UserProfile successful for country: {country} & userId: {userId}", Country, userId);
         return Results.Ok(userProfileEntity.Value);
     })
-        .WithName("GetUserProfile")
-        .WithOpenApi();
+        .WithOpenApi()
+        .WithApiVersionSet(versionSet)
+        .MapToApiVersion(1);
+
+
+    app.MapGet("api/v{version:apiVersion}/UserProfile/{Country}/{userId}", (string Country, string userId) =>
+    {
+        if (String.IsNullOrEmpty(Country))
+        {
+            logger.LogDebug("GET UserProfile no Country Provided");
+            return Results.BadRequest("Country cannot be empty");
+        }
+
+        if (String.IsNullOrEmpty(userId))
+        {
+            logger.LogDebug("GET UserProfile no UserId Provided");
+            return Results.BadRequest("User ID cannot be empty");
+        }
+
+        return Results.Ok("V2 Ok");
+    })
+        .WithOpenApi()
+        .WithApiVersionSet(versionSet)
+        .MapToApiVersion(2);
 
     app.MapPut("/UserProfile", async (DomainEntities.UserProfile userProfile) =>
     {

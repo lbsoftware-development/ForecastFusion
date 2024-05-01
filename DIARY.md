@@ -30,3 +30,4 @@ Week Off
 
 **Week 6 - 29/04/2024**
 Day 13 - Added API Versioning with Asp.Versioning package but needs more work
+Day 14 - Changed Versioning to use header versioning but still have swagger issues because of duplicate endpoints

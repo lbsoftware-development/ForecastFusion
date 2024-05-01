@@ -24,3 +24,9 @@ Day 9 - Added Tests and tested Idempotency Middleware
 Day 10 - Fixed UserProfileRepositoryTests and added serilog\
 Day 11 - Added logging lines and looked into in memory caching and added it to builder services\
 Day 12 - Added InMemory Caching with a seperate layer of abstraction so could easily be migrated to distributed caching such as redis in the future
+
+**Week 5 - 22/04/2024**
+Week Off
+
+**Week 6 - 29/04/2024**
+Day 13 - Added API Versioning with Asp.Versioning package but needs more work

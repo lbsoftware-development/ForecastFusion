@@ -6,9 +6,6 @@ using ForecastFusion.Application.Contracts;
 using ForecastFusion.Application.Interactors;
 using ForecastFusion.Application.Services;
 using ForecastFusion.Infrastructure.Repositories;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.Extensions.Caching.Memory;
 using Serilog;
 using Serilog.Events;
 using DomainEntities = ForecastFusion.Domain.Entities;
@@ -38,7 +35,8 @@ builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new Asp.Versioning.ApiVersion(1);
     options.AssumeDefaultVersionWhenUnspecified = true;
-    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+    options.ApiVersionReader = new HeaderApiVersionReader("api-version");
+    options.ReportApiVersions = true;
 });
 
 var app = builder.Build();
@@ -52,7 +50,13 @@ var versionSet = app.NewApiVersionSet()
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(o =>
+    {
+        //o.RoutePrefix = "";
+        o.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
+        o.SwaggerEndpoint("/swagger/v2/swagger.json", "V2 Docs");
+    });
+
 }
 
 app.UseHttpsRedirection();
@@ -83,7 +87,7 @@ using (var serviceScope = app.Services.CreateScope())
     .WithName("GetWeatherForecast")
     .WithOpenApi();
 
-    app.MapGet("api/v{version:apiVersion}/UserProfile/{Country}/{userId}", async (string Country, string userId) =>
+    app.MapGet("/UserProfile/{Country}/{userId}", async (string Country, string userId, HttpContext context) =>
     {       
         if (String.IsNullOrEmpty(Country))
         {
@@ -96,6 +100,8 @@ using (var serviceScope = app.Services.CreateScope())
             logger.LogDebug("GET UserProfile no UserId Provided");
             return Results.BadRequest("User ID cannot be empty");
         }
+
+        var apiVersion = context.GetRequestedApiVersion();
 
         logger.LogInformation("GET UserProfile for Country: {country} and UserId: {userId}", Country, userId);
 
@@ -110,13 +116,14 @@ using (var serviceScope = app.Services.CreateScope())
 
         logger.LogInformation("GET UserProfile successful for country: {country} & userId: {userId}", Country, userId);
         return Results.Ok(userProfileEntity.Value);
-    })
+    })      
+        .WithName("GetUserProfile V1")
         .WithOpenApi()
         .WithApiVersionSet(versionSet)
         .MapToApiVersion(1);
 
 
-    app.MapGet("api/v{version:apiVersion}/UserProfile/{Country}/{userId}", (string Country, string userId) =>
+    app.MapGet("/UserProfile/{Country}/{userId}", (string Country, string userId) =>
     {
         if (String.IsNullOrEmpty(Country))
         {
@@ -132,6 +139,7 @@ using (var serviceScope = app.Services.CreateScope())
 
         return Results.Ok("V2 Ok");
     })
+        .WithName("GetUserProfile V2")
         .WithOpenApi()
         .WithApiVersionSet(versionSet)
         .MapToApiVersion(2);

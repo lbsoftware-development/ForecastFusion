@@ -9,6 +9,8 @@ using ForecastFusion.Infrastructure.Repositories;
 using Serilog;
 using Serilog.Events;
 using DomainEntities = ForecastFusion.Domain.Entities;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +41,18 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions = true;
 });
 
+//Add Rate Limiting
+builder.Services.AddRateLimiter(_ =>
+{
+    _.AddFixedWindowLimiter("FixedRatePolicy", options =>
+    {
+        options.PermitLimit = 1;
+        options.Window = TimeSpan.FromSeconds(30);
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 2;
+    });
+});
+
 var app = builder.Build();
 var versionSet = app.NewApiVersionSet()
     .HasApiVersion(new Asp.Versioning.ApiVersion(1))
@@ -58,6 +72,9 @@ if (app.Environment.IsDevelopment())
     });
 
 }
+
+//Add Rate Limiting
+app.UseRateLimiter();
 
 app.UseHttpsRedirection();
 
@@ -80,12 +97,13 @@ using (var serviceScope = app.Services.CreateScope())
     var userProfileRepoUserCase = services.GetRequiredService<UserProfileUseCase>();
     var logger = app.Logger;
     app.MapGet("/weatherforecast", async () =>
-    {        
+    {
         var forecasts = await weatherForecastUseCase.GetForecastsAsync();
         return forecasts;
     })
     .WithName("GetWeatherForecast")
-    .WithOpenApi();
+    .WithOpenApi()
+    .RequireRateLimiting("FixedRatePolicy");
 
     app.MapGet("/UserProfile/{Country}/{userId}", async (string Country, string userId, HttpContext context) =>
     {       

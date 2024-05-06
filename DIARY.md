@@ -28,7 +28,10 @@ Day 12 - Added InMemory Caching with a seperate layer of abstraction so could ea
 **Week 5 - 22/04/2024**
 Week Off
 
-**Week 6 - 29/04/2024**
+**Week 6 - 29/04/2024**\
 Day 13 - Added API Versioning with Asp.Versioning package but needs more work\
 Day 14 - Changed Versioning to use header versioning but still have swagger issues because of duplicate endpoints\
 Day 15 - Added Middleware for rate limiting using the Fixed Window algorithm - need to test
+
+**Week 7 - 06/05/2024**\
+Day 16 - Added GlobalExceptionHandlingMiddleware with serilog logging

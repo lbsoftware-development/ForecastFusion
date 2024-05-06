@@ -1,0 +1,291 @@
+2024-05-06 17:28:26.875 +01:00 [DBG] Hosting starting
+2024-05-06 17:28:26.981 +01:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2024-05-06 17:28:26.986 +01:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2024-05-06 17:28:56.692 +01:00 [DBG] Hosting starting
+2024-05-06 17:28:56.792 +01:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2024-05-06 17:28:56.796 +01:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2024-05-06 17:31:26.944 +01:00 [DBG] Hosting starting
+2024-05-06 17:31:27.041 +01:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2024-05-06 17:31:27.045 +01:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2024-05-06 17:35:01.325 +01:00 [DBG] Hosting starting
+2024-05-06 17:35:01.425 +01:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2024-05-06 17:35:01.429 +01:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2024-05-06 17:36:02.079 +01:00 [DBG] Hosting starting
+2024-05-06 17:36:02.182 +01:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2024-05-06 17:36:02.187 +01:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2024-05-06 17:39:55.875 +01:00 [DBG] Hosting starting
+2024-05-06 17:39:55.968 +01:00 [FTL] Application startup exception
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2024-05-06 17:39:55.973 +01:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.ILogger' while attempting to activate 'ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware'.
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2024-05-06 17:40:52.496 +01:00 [DBG] Hosting starting
+2024-05-06 17:40:52.880 +01:00 [INF] Now listening on: https://localhost:7078
+2024-05-06 17:40:52.883 +01:00 [INF] Now listening on: http://localhost:5199
+2024-05-06 17:40:52.884 +01:00 [DBG] Loaded hosting startup assembly ForecastFusion.Api
+2024-05-06 17:40:52.885 +01:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-05-06 17:40:52.887 +01:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-05-06 17:40:52.888 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-06 17:40:52.889 +01:00 [INF] Hosting environment: Development
+2024-05-06 17:40:52.890 +01:00 [INF] Content root path: D:\Repos\ForecastFusion\ForecastFusion\ForecastFusion.Api
+2024-05-06 17:40:52.892 +01:00 [DBG] Hosting started
+2024-05-06 17:40:52.959 +01:00 [DBG] Connection id "0HN3DTD5MF5FD" accepted.
+2024-05-06 17:40:52.959 +01:00 [DBG] Connection id "0HN3DTD5MF5FE" accepted.
+2024-05-06 17:40:52.962 +01:00 [DBG] Connection id "0HN3DTD5MF5FD" started.
+2024-05-06 17:40:52.963 +01:00 [DBG] Connection id "0HN3DTD5MF5FE" started.
+2024-05-06 17:40:52.977 +01:00 [DBG] Connection id "0HN3DTD5MF5FE" received FIN.
+2024-05-06 17:40:52.977 +01:00 [DBG] Connection id "0HN3DTD5MF5FD" received FIN.
+2024-05-06 17:40:52.988 +01:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2024-05-06 17:40:52.988 +01:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2024-05-06 17:40:52.999 +01:00 [DBG] Connection id "0HN3DTD5MF5FD" stopped.
+2024-05-06 17:40:52.999 +01:00 [DBG] Connection id "0HN3DTD5MF5FE" stopped.
+2024-05-06 17:40:53.006 +01:00 [DBG] Connection id "0HN3DTD5MF5FE" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-05-06 17:40:53.006 +01:00 [DBG] Connection id "0HN3DTD5MF5FD" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-05-06 17:40:53.467 +01:00 [DBG] Connection id "0HN3DTD5MF5FF" accepted.
+2024-05-06 17:40:53.490 +01:00 [DBG] Connection id "0HN3DTD5MF5FF" started.
+2024-05-06 17:40:53.542 +01:00 [DBG] Connection 0HN3DTD5MF5FF established using the following protocol: "Tls12"
+2024-05-06 17:40:53.678 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7078/swagger/index.html - null null
+2024-05-06 17:40:53.762 +01:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-05-06 17:40:53.875 +01:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-05-06 17:40:53.878 +01:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-05-06 17:40:53.912 +01:00 [DBG] Response markup was updated to include Browser Link script injection.
+2024-05-06 17:40:53.913 +01:00 [DBG] Response markup was updated to include browser refresh script injection.
+2024-05-06 17:40:53.919 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7078/swagger/index.html - 200 null text/html;charset=utf-8 249.8507ms
+2024-05-06 17:40:53.921 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7078/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-06 17:40:53.932 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7078/_framework/aspnetcore-browser-refresh.js - 200 13772 application/javascript; charset=utf-8 11.1916ms
+2024-05-06 17:40:53.940 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7078/_vs/browserLink - null null
+2024-05-06 17:40:54.026 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7078/_vs/browserLink - 200 null text/javascript; charset=UTF-8 86.6929ms
+2024-05-06 17:40:54.278 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7078/swagger/v1/swagger.json - null null
+2024-05-06 17:40:54.288 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-05-06 17:40:54.570 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET UserProfile/{Country}/{userId}" for actions - HTTP: GET /UserProfile/{Country}/{userId},HTTP: GET /UserProfile/{Country}/{userId}. Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-05-06 17:40:54.583 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7078/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 305.9221ms
+2024-05-06 17:41:16.248 +01:00 [DBG] Connection id "0HN3DTD5MF5FG" accepted.
+2024-05-06 17:41:16.249 +01:00 [DBG] Connection id "0HN3DTD5MF5FG" received FIN.
+2024-05-06 17:41:16.250 +01:00 [DBG] Connection id "0HN3DTD5MF5FG" started.
+2024-05-06 17:41:16.251 +01:00 [DBG] Connection id "0HN3DTD5MF5FH" accepted.
+2024-05-06 17:41:16.259 +01:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2024-05-06 17:41:16.260 +01:00 [DBG] Connection id "0HN3DTD5MF5FH" started.
+2024-05-06 17:41:16.266 +01:00 [DBG] Connection id "0HN3DTD5MF5FG" stopped.
+2024-05-06 17:41:16.268 +01:00 [DBG] Connection id "0HN3DTD5MF5FG" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-05-06 17:41:16.276 +01:00 [DBG] Connection 0HN3DTD5MF5FH established using the following protocol: "Tls12"
+2024-05-06 17:41:16.284 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:7078/WeatherForecast - null null
+2024-05-06 17:41:16.290 +01:00 [DBG] The request path  does not match the path filter
+2024-05-06 17:41:16.352 +01:00 [DBG] 1 candidate(s) found for the request path '/WeatherForecast'
+2024-05-06 17:41:16.354 +01:00 [DBG] Request matched endpoint 'HTTP: GET /weatherforecast'
+2024-05-06 17:41:16.369 +01:00 [INF] Executing endpoint 'HTTP: GET /weatherforecast'
+2024-05-06 17:41:16.383 +01:00 [INF] Executed endpoint 'HTTP: GET /weatherforecast'
+2024-05-06 17:41:16.385 +01:00 [DBG] Connection id "0HN3DTD5MF5FH" completed keep alive response.
+2024-05-06 17:41:16.386 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:7078/WeatherForecast - 200 null application/json; charset=utf-8 102.3635ms
+2024-05-06 17:41:56.304 +01:00 [DBG] Hosting starting
+2024-05-06 17:41:56.739 +01:00 [INF] Now listening on: https://localhost:7078
+2024-05-06 17:41:56.743 +01:00 [INF] Now listening on: http://localhost:5199
+2024-05-06 17:41:56.744 +01:00 [DBG] Loaded hosting startup assembly ForecastFusion.Api
+2024-05-06 17:41:56.745 +01:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-05-06 17:41:56.746 +01:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-05-06 17:41:56.748 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-06 17:41:56.749 +01:00 [INF] Hosting environment: Development
+2024-05-06 17:41:56.751 +01:00 [INF] Content root path: D:\Repos\ForecastFusion\ForecastFusion\ForecastFusion.Api
+2024-05-06 17:41:56.752 +01:00 [DBG] Hosting started
+2024-05-06 17:41:56.895 +01:00 [DBG] Connection id "0HN3DTDOO669H" accepted.
+2024-05-06 17:41:56.895 +01:00 [DBG] Connection id "0HN3DTDOO669K" received FIN.
+2024-05-06 17:41:56.895 +01:00 [DBG] Connection id "0HN3DTDOO669I" accepted.
+2024-05-06 17:41:56.895 +01:00 [DBG] Connection id "0HN3DTDOO669J" received FIN.
+2024-05-06 17:41:56.904 +01:00 [DBG] Connection id "0HN3DTDOO669H" started.
+2024-05-06 17:41:56.957 +01:00 [DBG] Connection id "0HN3DTDOO669I" started.
+2024-05-06 17:41:56.976 +01:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2024-05-06 17:41:56.976 +01:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2024-05-06 17:41:56.990 +01:00 [DBG] Connection id "0HN3DTDOO669H" stopped.
+2024-05-06 17:41:56.994 +01:00 [DBG] Connection id "0HN3DTDOO669I" stopped.
+2024-05-06 17:41:57.007 +01:00 [DBG] Connection id "0HN3DTDOO669I" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-05-06 17:41:57.007 +01:00 [DBG] Connection id "0HN3DTDOO669H" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-05-06 17:41:57.188 +01:00 [DBG] Connection id "0HN3DTDOO669L" accepted.
+2024-05-06 17:41:57.193 +01:00 [DBG] Connection id "0HN3DTDOO669L" started.
+2024-05-06 17:41:57.233 +01:00 [DBG] Connection 0HN3DTDOO669L established using the following protocol: "Tls12"
+2024-05-06 17:41:57.310 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7078/swagger/index.html - null null
+2024-05-06 17:41:57.361 +01:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-05-06 17:41:57.481 +01:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-05-06 17:41:57.484 +01:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-05-06 17:41:57.513 +01:00 [DBG] Response markup was updated to include Browser Link script injection.
+2024-05-06 17:41:57.538 +01:00 [DBG] Response markup was updated to include browser refresh script injection.
+2024-05-06 17:41:57.551 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7078/swagger/index.html - 200 null text/html;charset=utf-8 245.3423ms
+2024-05-06 17:41:57.582 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7078/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-06 17:41:57.597 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7078/_framework/aspnetcore-browser-refresh.js - 200 13772 application/javascript; charset=utf-8 14.8106ms
+2024-05-06 17:41:57.603 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7078/_vs/browserLink - null null
+2024-05-06 17:41:57.663 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7078/_vs/browserLink - 200 null text/javascript; charset=UTF-8 59.9814ms
+2024-05-06 17:41:58.026 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7078/swagger/v1/swagger.json - null null
+2024-05-06 17:41:58.036 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-05-06 17:41:58.219 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET UserProfile/{Country}/{userId}" for actions - HTTP: GET /UserProfile/{Country}/{userId},HTTP: GET /UserProfile/{Country}/{userId}. Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-05-06 17:41:58.229 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7078/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 203.7828ms
+2024-05-06 17:42:02.250 +01:00 [DBG] Connection id "0HN3DTDOO669M" accepted.
+2024-05-06 17:42:02.250 +01:00 [DBG] Connection id "0HN3DTDOO669M" received FIN.
+2024-05-06 17:42:02.251 +01:00 [DBG] Connection id "0HN3DTDOO669M" started.
+2024-05-06 17:42:02.252 +01:00 [DBG] Connection id "0HN3DTDOO669N" accepted.
+2024-05-06 17:42:02.255 +01:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2024-05-06 17:42:02.256 +01:00 [DBG] Connection id "0HN3DTDOO669N" started.
+2024-05-06 17:42:02.261 +01:00 [DBG] Connection id "0HN3DTDOO669M" stopped.
+2024-05-06 17:42:02.264 +01:00 [DBG] Connection id "0HN3DTDOO669M" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-05-06 17:42:02.271 +01:00 [DBG] Connection 0HN3DTDOO669N established using the following protocol: "Tls12"
+2024-05-06 17:42:02.277 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:7078/WeatherForecast - null null
+2024-05-06 17:42:02.283 +01:00 [DBG] The request path  does not match the path filter
+2024-05-06 17:42:02.345 +01:00 [DBG] 1 candidate(s) found for the request path '/WeatherForecast'
+2024-05-06 17:42:02.348 +01:00 [DBG] Request matched endpoint 'HTTP: GET /weatherforecast'
+2024-05-06 17:42:02.360 +01:00 [INF] Executing endpoint 'HTTP: GET /weatherforecast'
+2024-05-06 17:42:02.534 +01:00 [INF] Executed endpoint 'HTTP: GET /weatherforecast'
+2024-05-06 17:42:07.108 +01:00 [ERR] Test error
+System.Exception: Test error
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__6>d.MoveNext() in D:\Repos\ForecastFusion\ForecastFusion\ForecastFusion.Api\Program.cs:line 119
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteTaskOfT>g__ExecuteAwaited|133_0[T](Task`1 task, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at ForecastFusion.Api.Middleware.IdempotencyMiddleware.Invoke(HttpContext context) in D:\Repos\ForecastFusion\ForecastFusion\ForecastFusion.Api\Middleware\IdempotencyMiddleware.cs:line 49
+   at ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\Repos\ForecastFusion\ForecastFusion\ForecastFusion.Api\Middleware\GlobalExceptionHandlingMiddleware.cs:line 20
+2024-05-06 17:42:07.178 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Exception: Test error
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__6>d.MoveNext() in D:\Repos\ForecastFusion\ForecastFusion\ForecastFusion.Api\Program.cs:line 119
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteTaskOfT>g__ExecuteAwaited|133_0[T](Task`1 task, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at ForecastFusion.Api.Middleware.IdempotencyMiddleware.Invoke(HttpContext context) in D:\Repos\ForecastFusion\ForecastFusion\ForecastFusion.Api\Middleware\IdempotencyMiddleware.cs:line 49
+   at ForecastFusion.Api.Middleware.GlobalExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\Repos\ForecastFusion\ForecastFusion\ForecastFusion.Api\Middleware\GlobalExceptionHandlingMiddleware.cs:line 20
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-05-06 17:42:07.190 +01:00 [DBG] Connection id "0HN3DTDOO669N" completed keep alive response.
+2024-05-06 17:42:07.191 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:7078/WeatherForecast - 500 null text/plain; charset=utf-8 4914.2492ms

@@ -1,10 +1,10 @@
-﻿namespace ForecastFusion.Api
+﻿namespace ForecastFusion.Api.Middleware
 {
     public class IdempotencyMiddleware
     {
         private readonly RequestDelegate _next;
         private static readonly Dictionary<string, DateTime> _processedRequests = new Dictionary<string, DateTime>();
-        private static readonly TimeSpan _retentionPeriod = TimeSpan.FromSeconds(10); 
+        private static readonly TimeSpan _retentionPeriod = TimeSpan.FromSeconds(10);
 
         public IdempotencyMiddleware(RequestDelegate next)
         {
@@ -51,7 +51,7 @@
             // Add the processed request to the dictionary
             lock (_processedRequests)
             {
-                if(!string.IsNullOrEmpty(idempotencyKey))
+                if (!string.IsNullOrEmpty(idempotencyKey))
                     _processedRequests[idempotencyKey] = DateTime.Now;
             }
         }

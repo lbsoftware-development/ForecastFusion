@@ -1,4 +1,4 @@
-﻿namespace ForecastFusion.Api
+﻿namespace ForecastFusion.Api.Middleware
 {
     public static class MiddlewareExtensions
     {

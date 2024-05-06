@@ -1,5 +1,4 @@
 using Asp.Versioning;
-using ForecastFusion.Api;
 using ForecastFusion.Api.Caching;
 using ForecastFusion.Application.Caching;
 using ForecastFusion.Application.Contracts;
@@ -11,6 +10,7 @@ using Serilog.Events;
 using DomainEntities = ForecastFusion.Domain.Entities;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
+using ForecastFusion.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,12 +53,31 @@ builder.Services.AddRateLimiter(_ =>
     });
 });
 
+//Add logging using SeriLog
+Log.Logger = new LoggerConfiguration()
+                                    .MinimumLevel.Debug()
+                                    .WriteTo.Console()
+                                    .WriteTo.File("logs/forecast-fusion-logs-.txt", LogEventLevel.Verbose, retainedFileCountLimit: 7, rollingInterval: RollingInterval.Day)
+                                    .CreateLogger();
+
+// Add Serilog as a provider for the logging framework
+builder.Services.AddLogging(loggingBuilder =>
+{
+    loggingBuilder.ClearProviders(); // Clear existing logging providers
+    loggingBuilder.AddSerilog(dispose: true); // Add Serilog as the logging provider
+});
+
+builder.Services.AddSingleton(Log.Logger);
+
 var app = builder.Build();
+
 var versionSet = app.NewApiVersionSet()
     .HasApiVersion(new Asp.Versioning.ApiVersion(1))
     .HasApiVersion(new Asp.Versioning.ApiVersion(2))
     .ReportApiVersions()
     .Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -76,16 +95,15 @@ if (app.Environment.IsDevelopment())
 //Add Rate Limiting
 app.UseRateLimiter();
 
+//Add global exception handling
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseIdempotencyMiddleware();
 
-Log.Logger = new LoggerConfiguration()
-                                    .MinimumLevel.Debug()
-                                    .WriteTo.Console()
-                                    .WriteTo.File("logs/forecast-fusion-logs-.txt", LogEventLevel.Verbose, retainedFileCountLimit: 7, rollingInterval: RollingInterval.Day)
-                                    .CreateLogger();
+
 
 
 
@@ -98,6 +116,7 @@ using (var serviceScope = app.Services.CreateScope())
     var logger = app.Logger;
     app.MapGet("/weatherforecast", async () =>
     {
+        throw new Exception("Test error");
         var forecasts = await weatherForecastUseCase.GetForecastsAsync();
         return forecasts;
     })
@@ -177,5 +196,4 @@ using (var serviceScope = app.Services.CreateScope())
 
 
 app.Run();
-
 
